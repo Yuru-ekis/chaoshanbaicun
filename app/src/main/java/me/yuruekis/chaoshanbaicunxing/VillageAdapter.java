@@ -1,6 +1,7 @@
 package me.yuruekis.chaoshanbaicunxing;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -45,7 +46,18 @@ public class VillageAdapter extends RecyclerView.Adapter<VillageAdapter.ViewHold
             mContext = viewGroup.getContext();
         }
         View view = LayoutInflater.from(mContext).inflate(R.layout.village_item, viewGroup, false);
-        return new ViewHolder(view);
+        final ViewHolder holder = new ViewHolder(view);
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Village village = mVillageList.get(position);
+                Intent intent = new Intent(mContext, PhotosActivity.class);
+                intent.putExtra(PhotosActivity.VILLAGE_NAME, village.getName());
+                mContext.startActivity(intent);
+            }
+        });
+        return holder;
     }
 
     @Override
