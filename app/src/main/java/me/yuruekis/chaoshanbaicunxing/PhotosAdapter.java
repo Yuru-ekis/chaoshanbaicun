@@ -1,6 +1,7 @@
 package me.yuruekis.chaoshanbaicunxing;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -29,7 +30,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
             super(view);
             cardView = (CardView) view;
             photosImage = (ImageView) view.findViewById(R.id.photos_image);
-            photosName = (TextView) view.findViewById(R.id.photos_name);
+            //photosName = (TextView) view.findViewById(R.id.photos_name);
         }
     }
 
@@ -44,14 +45,29 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
             mContext = viewGroup.getContext();
         }
         View view = LayoutInflater.from(mContext).inflate(R.layout.photos_item, viewGroup, false);
-        return new ViewHolder(view);
+        final ViewHolder holder = new ViewHolder(view);
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Photos photos = mPhotosList.get(position);
+                Intent intent = new Intent(mContext, PhotoDetailActivity.class);
+                intent.putExtra(PhotoDetailActivity.PHOTOS_NAME, photos.getName());
+                intent.putExtra(PhotoDetailActivity.PHOTOS_IMAGE_URL, photos.getPhotosImgURL());
+                mContext.startActivity(intent);
+            }
+        });
+        return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Photos photos = mPhotosList.get(i);
-        viewHolder.photosName.setText(photos.getName());
-        Glide.with(mContext).load(photos.getPhotosImgURL()).into(viewHolder.photosImage); //加入加载中图片
+        //viewHolder.photosName.setText(photos.getName());
+        Glide.with(mContext)
+                .load(photos.getPhotosImgURL())
+                .thumbnail(Glide.with(mContext).load(R.drawable.loading))
+                .into(viewHolder.photosImage); //加入加载中图片
     }
 
     @Override

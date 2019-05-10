@@ -1,3 +1,11 @@
+/*
+* 我永远喜欢
+* Makito
+*
+*
+ */
+
+
 package me.yuruekis.chaoshanbaicunxing;
 
 import android.content.Intent;
@@ -25,12 +33,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static boolean isToastShowed = false;
+
     private DrawerLayout mDrawerLayout;
     //private SwipeRefreshLayout swipeRefresh;
 
     //private Village[] villages = {new Village("乔林村", "https://i.loli.net/2019/03/29/5c9e1a0004541.jpg"), new Village("桃山村", "https://i.loli.net/2019/03/29/5c9e1a0004541.jpg"), new Village("贾里村", "https://i.loli.net/2019/03/29/5c9e1a0004541.jpg")};
 
-    private List<Village> villageList = new ArrayList<>(Arrays.asList(new Village("乔林村", "https://ws1.sinaimg.cn/mw690/0071ouepgy1g1k00uuei0j31hc0u0quu.jpg"), new Village("桃山村", "https://ws1.sinaimg.cn/mw690/0071ouepgy1g1k00uuei0j31hc0u0quu.jpg"), new Village("贾里村", "https://ws1.sinaimg.cn/mw690/0071ouepgy1g1k00uuei0j31hc0u0quu.jpg")));
+    private List<Village> villageList = new ArrayList<>(Arrays.asList(new Village("乔林村", "https://i.loli.net/2019/05/08/5cd2956d6bfdd.jpg"), new Village("桃山村", "https://i.loli.net/2019/05/08/5cd295b0cc968.jpg"), new Village("贾里村", "https://i.loli.net/2019/05/08/5cd295feb812a.jpg")));
 
     private VillageAdapter adapter;
 
