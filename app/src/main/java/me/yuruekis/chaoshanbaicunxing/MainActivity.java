@@ -10,6 +10,7 @@ package me.yuruekis.chaoshanbaicunxing;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -34,6 +35,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    //private MediaPlayer mp=new MediaPlayer();
     public static boolean isToastShowed = false;
 
     private DrawerLayout mDrawerLayout;
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     //private Village[] villages = {new Village("乔林村", "https://i.loli.net/2019/03/29/5c9e1a0004541.jpg"), new Village("桃山村", "https://i.loli.net/2019/03/29/5c9e1a0004541.jpg"), new Village("贾里村", "https://i.loli.net/2019/03/29/5c9e1a0004541.jpg")};
 
-    private List<Village> villageList = new ArrayList<>(Arrays.asList(new Village("乔林村", "https://i.loli.net/2019/05/08/5cd2956d6bfdd.jpg"), new Village("桃山村", "https://i.loli.net/2019/05/08/5cd295b0cc968.jpg"), new Village("贾里村", "https://i.loli.net/2019/05/08/5cd295feb812a.jpg")));
+    private List<Village> villageList = new ArrayList<>(Arrays.asList(new Village("乔林村", "https://i.loli.net/2019/05/15/5cdbc8941f86c91854.jpg"), new Village("桃山村", "https://i.loli.net/2019/05/15/5cdbc894c991a23083.jpg"), new Village("贾里村", "https://i.loli.net/2019/05/15/5cdbc8937099e58434.jpg")));
 
     private VillageAdapter adapter;
 
@@ -49,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //MediaPlayer mp =MediaPlayer.create(this, R.raw.bgm);
+        //mp.start();
+        Intent intent = new Intent(MainActivity.this, MusicService.class);
+        startService(intent);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -95,8 +101,22 @@ public class MainActivity extends AppCompatActivity {
             case R.id.about:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 break;
+            case R.id.play:
+                //mp.start();
+                //Intent intent = new Intent(this, MusicService.class);
+                //startService(intent);
+            case R.id.stop:
+                //Intent intent2 = new Intent(this, MusicService.class);
+                //stopService(intent2);
             default:
         }
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent intent2 = new Intent(this, MusicService.class);
+        stopService(intent2);
     }
 }

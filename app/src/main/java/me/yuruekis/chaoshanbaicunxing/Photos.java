@@ -5,6 +5,8 @@ public class Photos {
 
     private String photosImgURL;
 
+    private String fromWhichVillage;
+
     public Photos(String name, String photosImgURL) {
         this.name = name;
         this.photosImgURL = photosImgURL;

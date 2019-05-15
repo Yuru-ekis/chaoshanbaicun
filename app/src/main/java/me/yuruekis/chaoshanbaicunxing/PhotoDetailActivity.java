@@ -69,6 +69,15 @@ public class PhotoDetailActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+// 点击图片查看大图
+        photosImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(PhotoDetailActivity.this, ImageDisplayActivity.class);
+                intent1.putExtra("photo_url", photosImageURL);
+                startActivity(intent1);
+            }
+        });
 
 
         Glide.with(this).load(photosImageURL).into(photosImageView);
