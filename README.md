@@ -1,4 +1,4 @@
-# chaoshanbaicun
+# 潮汕百村行
 Simple digital gallery as assignment for "公益摄影".
 ## TODO:
 - [ ] 使用微博图床。
